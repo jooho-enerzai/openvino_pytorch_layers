@@ -36,8 +36,8 @@ if __name__ == "__main__":
                                    downsample_conv_kwargs=downsample_conv_kwargs,
                                    resnet_conv_kwargs=resnet_conv_kwargs)
        
-    model1.load_state_dict(torch.load('ffcresnet.pt'), strict=True)
-    model2.load_state_dict(torch.load('ffcresnet.pt'), strict=True)
+    model1.load_state_dict(torch.load('models/ffcresnet.pt'), strict=True)
+    model2.load_state_dict(torch.load('models/ffcresnet.pt'), strict=True)
 
     height = 720
     width = 800
@@ -48,13 +48,13 @@ if __name__ == "__main__":
     inp = Variable(torch.randn((1, 4, 720, 800)))
 
     with torch.no_grad():
-        torch.onnx.export(model1, inp, 'fft_test.onnx',
+        torch.onnx.export(model1, inp, 'models/fft_test.onnx',
                           input_names=['input'],
                           output_names=['output'],
                           operator_export_type=torch.onnx.OperatorExportTypes.ONNX_FALLTHROUGH)
 
     m = torch.jit.trace(model2, inp)
-    m.save('./fft_test.pt')
+    m.save('./models/fft_test.pt')
 
     ref = model1(inp)
     ref2 =m(inp)

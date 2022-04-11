@@ -3,7 +3,6 @@ from openvino.inference_engine import IECore
 
 import sys
 import subprocess
-import pytest
 from pathlib import Path
 
 import numpy as np
@@ -16,7 +15,7 @@ ie = IECore()
 ie.add_extension(get_extensions_path(), 'CPU')
 ie.set_config({'CONFIG_FILE': 'user_ie_extensions/gpu_extensions.xml'}, 'GPU')
 
-net = ie.read_network('fft_test.onnx')
+net = ie.read_network('models/fft_test.onnx')
 net.reshape(shapes)
 exec_net = ie.load_network(net, 'CPU')
 end_load = time.time()
