@@ -6,7 +6,7 @@ import torch
 
 if __name__ == "__main__":
     start_load = time.time()
-    m = torch.jit.load('./lama_model1.pt', map_location='cpu')
+    m = torch.jit.load('./fft_test.pt', map_location='cpu')
     end_load = time.time()
     print("Loading : ", end_load - start_load)
     inp = torch.rand((1, 4, 720, 800))
