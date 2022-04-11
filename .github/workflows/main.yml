@@ -160,6 +160,11 @@ jobs:
     - name: Test
       run: |
         python3 -m pytest tests/run_tests.py
+        python3 test.py
+        mo --input_model=fft_test.onnx --extension=mo_extensions
+        python3 test_jit_latency.py
+        python3 test_onnx_latency.py
+        python3 test_openvino_latency.py
 
   publish:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
