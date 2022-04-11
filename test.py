@@ -26,12 +26,12 @@ if __name__ == "__main__":
         "ratio_gout": 0.75,
         "enable_lfu": False}
 
-    model1 = ffc.FFCResNetGenerator(input_nc=4, output_nc=3, ngf=8, n_blocks=1, n_downsampling=3,
+    model1 = ffc.FFCResNetGenerator(input_nc=4, output_nc=3, ngf=24, n_blocks=6, n_downsampling=3,
                                    init_conv_kwargs=init_conv_kwargs,
                                    downsample_conv_kwargs=downsample_conv_kwargs,
                                    resnet_conv_kwargs=resnet_conv_kwargs)
  
-    model2 = ffc_original.FFCResNetGenerator2(input_nc=4, output_nc=3, ngf=8, n_blocks=1, n_downsampling=3,
+    model2 = ffc_original.FFCResNetGenerator2(input_nc=4, output_nc=3, ngf=24, n_blocks=6, n_downsampling=3,
                                    init_conv_kwargs=init_conv_kwargs,
                                    downsample_conv_kwargs=downsample_conv_kwargs,
                                    resnet_conv_kwargs=resnet_conv_kwargs)
