@@ -147,7 +147,7 @@ jobs:
         sudo apt-get install -y python3-setuptools libopencv-dev
         yum install -y python3-setuptools opencv opencv-devel opencv-python
         python3 -m pip install --upgrade pip
-        python3 -m pip install torch==1.8.1 torchivision==0.9.1 open3d
+        python3 -m pip install torch==1.8.1 torchivision==0.9.1 open3d pytest
         python3 -m pip install -U protobuf
         python3 -m pip install openvino-dev[onnx]==${{env.OPENVINO_VERSION}}
 
