@@ -11,7 +11,7 @@ on:
     branches: [ master ]
 
 env:
-  OPENVINO_VERSION: 2021.4.2
+  OPENVINO_: 2021.4.2
   VERSION: 2021.4.2.5
   DIST_VERSION: 2021.4.752
   DIST_WIN: https://registrationcenter-download.intel.com/akdlm/irc_nas/18320/w_openvino_toolkit_p_2021.4.752.exe
@@ -145,8 +145,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y python3-setuptools libopencv-dev
+        yum install -y python3-setuptools opencv opencv-devel opencv-python
         python3 -m pip install --upgrade pip
-        python3 -m pip install -r tests/requirements.txt
+        python3 -m pip install torch==1.8.1 torchivision==0.9.1 open3d
         python3 -m pip install -U protobuf
         python3 -m pip install openvino-dev[onnx]==${{env.OPENVINO_VERSION}}
 
@@ -154,7 +155,7 @@ jobs:
     - name: Install CPU extensions
       run: |
         rm -r openvino_extensions
-        python3 -m pip install *.whl
+        python3 -m pip install --force-reinstall *.whl
 
     - name: Test
       run: |
