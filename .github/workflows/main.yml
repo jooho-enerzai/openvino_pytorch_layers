@@ -116,7 +116,7 @@ jobs:
         cd user_ie_extensions
         mkdir build && cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release
-        make -j$(nproc --all)
+        make -j4
 
     - name: Build wheel
       run: |
